@@ -44,10 +44,6 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
     ImageView clearSearch;
     RelativeLayout relativeLayout;
 
-    public static final String OPEN_WEATHER_MAP_URL = "https://api.openweathermap.org/data/2.5/weather?q=london&appid=9b01df4b5acd25c7492260ce6b2cbb9a&units=metrics";
-    public static final String OPEN_WEATHER_MAP_API = "9b01df4b5acd25c7492260ce6b2cbb9a";
-
-
     public WeatherFragment() {
         // Required empty public constructor
     }
@@ -55,10 +51,7 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -215,7 +208,7 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
                     JSONObject windInfo = jsonObject.getJSONObject("wind");
                     JSONObject sys = jsonObject.getJSONObject("sys");
 
-                    // (char) 0x00B0 is thhe symbol for degree
+                    // (char) 0x00B0 is the symbol for degree
                     String mtemperature = String.valueOf(main.getDouble("temp")) + (char) 0x00B0 + "C";
 
                     String mpressure = main.getString("pressure") + "hPa";
@@ -250,7 +243,8 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
 
             }
         }
-        new DownloadTask().execute("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity.getText().toString().trim() + "&appid=9b01df4b5acd25c7492260ce6b2cbb9a&units=metric");
+        //NOTE: make sure to use your OWN apikey, you can make a free account on https://openweathermap.org/api
+        new DownloadTask().execute("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity.getText().toString().trim() + "&appid={ENTER YOUR API KEY HERE}&units=metric");
     }
 
     public Date getDate(long cityTimezone){
